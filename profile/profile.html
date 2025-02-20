@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- ========== bootstrap css ========== -->
+    <link rel="stylesheet" href="../CSS/bootstrap.css" />
+    <!-- ========== animate css ========== -->
+    <link rel="stylesheet" href="../CSS/animate.css" />
+    <!-- ========== profile css ========== -->
+    <link rel="stylesheet" href="css/profile.css" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-md bg-light shadow-lg fixed-top navbar-light"
+    >
+      <div class="container-fluid">
+        <img
+          src="../img/image1.webp"
+          class="rounded-circle"
+          width="60"
+          alt=""
+        />
+        <a href="#" class="mx-4 text-white navbar-brand">
+          Hotel Management System
+        </a>
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#myMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="myMenu">
+          <ul class="navbar-nav w-100 justify-content-end">
+            <div class="input-group mx-5 w-50">
+              <input
+                type="search"
+                class="form-control"
+                placeholder="Search By Name, Email, Room No...."
+              />
+              <span class="input-group-text fw-bold text-white btn"
+                >Search</span
+              >
+            </div>
+            <button class="btn logout-btn text-white fw-bold px-4">Logout</button>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br /><br /><br />
+    <div class="container pt-5 pb-5">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- nav tab -->
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="#booking" class="nav-link active" data-bs-toggle="tab">
+                Booking
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#login" class="nav-link" data-bs-toggle="tab">
+                In House
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#login" class="nav-link" data-bs-toggle="tab">
+                Cashier
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#login" class="nav-link" data-bs-toggle="tab">
+                Archive
+              </a>
+            </li>
+          </ul>
+          <!-- nav panes -->
+          <div class="tab-content">
+            <div class="tab-pane active container mt-3" id="booking">
+              <div class="row my-5">
+                <div class="col-md-4 text-center">
+                  <button data-bs-toggle="modal" data-bs-target="#registration-modal" class="btn action-btn px-4 text-white fw-bold">Register</button>
+                </div>
+                <div class="col-md-4 text-center">
+                  <button class="btn action-btn px-4 text-white fw-bold">Print</button>
+                </div>
+                <div class="col-md-4 text-center">
+                  <button class="btn action-btn text-white fw-bold">Tootal Booking</button>
+                </div>
+              </div>
+              <div>
+                <h1>All Booking Data</h1>
+                <table class="table table-striped text-center">
+                  <thead>
+                    <tr>
+                      <th>Sr</th>
+                      <th>Location</th>
+                      <th>Room No</th>
+                      <th>Full Name</th>
+                      <th>Checking</th>
+                      <th>Checkout</th>
+                      <th>Total People</th>
+                      <th>Mobile</th>
+                      <th>Price</th>
+                      <th>Notice</th>
+                      <th>Registered At</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Feni</td>
+                      <td>15</td>
+                      <td>Abdul Aziz</td>
+                      <td>2-08-200</td>
+                      <td>2-08-200</td>
+                      <td>5</td>
+                      <td>0187463059</td>
+                      <td>5000</td>
+                      <td>All Includes</td>
+                      <td>12-05-800</td>
+                      <td>
+                        <button class="btn p-1 px-2 btn-primary">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn p-1 px-2 text-white btn-info">
+                          <i class="fa fa-check"></i>
+                        </button>
+                        <button class="btn p-1 px-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane container mt-3" id="login">
+                <!-- <img src="./img/singnup.jpg" class="w-25" alt=""> -->
+                <form class="login-form">
+                    <input type="email" placeholder="Enter Your Email" class="mb-3 form-control">
+                    <input type="password" placeholder="Enter Password" class="mb-3 form-control">
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center col-md-6 mt-5">
+            <img src="./img/bed-image.jpg" class="w-100" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Start moddls coding ========== -->
+    <div class="modal animate__animated animate__zoomIn" id="registration-modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5>Registration Form</h5>
+            <button type="button" class="btn-close b-modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="body-body p-4">
+          <form class="booking-form">
+            <div class="row">
+              <div class="col-md-6">
+                <input name="fullname" type="text" placeholder="Full Name" class="mb-3 form-control">
+              </div>
+              <div class="col-md-6">
+                <input name="location" type="text" placeholder="Location" class="mb-3 form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input name="roomNo" type="text" placeholder="Room No" class="mb-3 form-control">
+              </div>
+              <div class="col-md-6">
+                <input name="totalPeople" type="text" placeholder="Total People" class="mb-3 form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label>Check In Date</label>
+                <input name="checkInDate" type="date" class="mb-3 form-control">
+              </div>
+              <div class="col-md-6">
+                <label>Check Out Date</label>
+                <input name="checkOutDate" type="date" class="mb-3 form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input name="mobile" type="number" placeholder="Price" class="mb-3 form-control">
+              </div>
+              <div class="col-md-6">
+                <input name="mobile" type="number" placeholder="Mobile" class="mb-3 form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <textarea name="notice" class="form-control" placeholder="Notice"></textarea>
+            </div>
+            <div class="row mb-3">
+              <button type="submit" class="btn action-btn text-white fw-bold">Register</button>
+              <button type="button" class="btn bg-danger text-white fw-bold">Update</button>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- ========== End moddls coding ========== -->
+
+    <!-- ========== Bootstrap js ========== -->
+    <script src="../js/bootstrap.js"></script>
+    <!-- ========== Sweetalert js ========== -->
+    <script src="../js/sweetalert.js"></script>
+    <!-- ========== Profile js ========== -->
+    <script src="js/profile.js"></script>
+  </body>
+</html>
