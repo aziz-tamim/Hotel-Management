@@ -102,20 +102,20 @@
                     <tr>
                       <th>Sr</th>
                       <th>Location</th>
-                      <th>Room No</th>
-                      <th>Full Name</th>
-                      <th>Checking</th>
+                      <th>RoomNo</th>
+                      <th>FullName</th>
+                      <th>CheckIn</th>
                       <th>Checkout</th>
-                      <th>Total People</th>
+                      <th>TotalPeople</th>
                       <th>Mobile</th>
                       <th>Price</th>
                       <th>Notice</th>
-                      <th>Registered At</th>
+                      <th>RegisterAt</th>
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody class="booking-list">
+                    <!-- <tr>
                       <td>1</td>
                       <td>Feni</td>
                       <td>15</td>
@@ -138,7 +138,7 @@
                           <i class="fa fa-trash"></i>
                         </button>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -197,7 +197,7 @@
             </div>
             <div class="row mb-3">
               <div class="col-md-6">
-                <input name="mobile" type="number" placeholder="Price" class="mb-3 form-control">
+                <input name="price" type="number" placeholder="Price" class="mb-3 form-control">
               </div>
               <div class="col-md-6">
                 <input name="mobile" type="number" placeholder="Mobile" class="mb-3 form-control">
@@ -208,7 +208,7 @@
             </div>
             <div class="row mb-3">
               <button type="submit" class="btn action-btn text-white fw-bold">Register</button>
-              <button type="button" class="btn bg-danger text-white fw-bold">Update</button>
+              <button type="button" class="btn d-none bg-danger text-white fw-bold">Update</button>
             </div>
           </form>
         </div>
