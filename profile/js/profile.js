@@ -2,13 +2,18 @@
 let userInfo;
 let user;
 let allBData = [];
+let allInHData = [];
 let navBrand = document.querySelector(".navbar-brand");
 let logoutBtn = document.querySelector(".logout-btn");
 let bookingForm = document.querySelector(".booking-form");
 let allBInput = bookingForm.querySelectorAll("input");
 let bTextarea = bookingForm.querySelector("textarea");
-let bCloseBtn = document.querySelector(".b-modal-close-btn");
+let inHouseForm = document.querySelector(".inhouse-form");
+let allInHInput = inHouseForm.querySelectorAll("input");
+let InHTextarea = inHouseForm.querySelector("textarea");
+let modalCBtn = document.querySelectorAll(".btn-close");
 let bListTBody = document.querySelector(".booking-list");
+let InHListTBody = document.querySelector(".inhouse-list");
 let bRegBtn = document.querySelector(".b-register-btn");
 /// Check user is login or not
 if (sessionStorage.getItem("__au__") == null) {
@@ -39,8 +44,66 @@ const formatDate = (data, isTime) => {
   return `${dd}-${mm}-${yy} ${isTime ? time : ""}`;
 };
 
-allBData = fetchData(user + "_allBData");
+/// registration coding
+const regisrationFunc = (textarea,inputs,array,key) => {
+    let data = {
+        notice: textarea.value,
+        createdAt: new Date(),
+      };
+      for (let el of inputs) {
+        let key = el.name;
+        let value = el.value;
+        data[key] = value;
+      }
+      array.push(data);
+      localStorage.setItem(key, JSON.stringify(array));
+      swal("Good Job !", "Booking Success", "success");
+}
 
+// show data
+const ShowData = (element,array) => {
+    element.innerHTML = "";
+  array.forEach((item, index) => {
+    element.innerHTML += `
+        <tr>
+            <td class="text-nowrap">${index + 1}</td>
+            <td class="text-nowrap">${item.location}</td>
+            <td class="text-nowrap">${item.roomNo}</td>
+            <td class="text-nowrap">${item.fullname}</td>
+            <td class="text-nowrap">${formatDate(
+            item.checkInDate
+            )}</td>
+            <td class="text-nowrap">${formatDate(
+            item.checkOutDate,
+            true
+            )}</td>
+            <td class="text-nowrap">${item.totalPeople}</td>
+            <td class="text-nowrap">${item.mobile}</td>
+            <td class="text-nowrap">${item.price}</td>
+            <td class="text-nowrap">${item.notice}</td>
+            <td class="text-nowrap">${formatDate(
+            item.createdAt,
+            true
+            )}</td>
+            <td class="text-nowrap">
+            <button class="btn edit-btn p-1 px-2 btn-primary">
+                <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn checkin-btn p-1 px-2 text-white btn-info">
+                <i class="fa fa-check"></i>
+            </button>
+            <button class="btn del-btn p-1 px-2 btn-danger">
+                <i class="fa fa-trash"></i>
+            </button>
+            </td>
+        </tr>`;
+  });
+  deleteBDataFunc();
+  updateBDataFunc();
+};
+
+allBData = fetchData(user + "_allBData");
+allInHData = fetchData(user + "_allInHData");
 /// logout coding
 logoutBtn.onclick = () => {
   logoutBtn.innerHTML = "Please Wait...";
@@ -54,22 +117,21 @@ logoutBtn.onclick = () => {
 /// start booking coding
 bookingForm.onsubmit = (e) => {
   e.preventDefault();
-  let data = {
-    notice: bTextarea.value,
-    createdAt: new Date(),
-  };
-  for (let el of allBInput) {
-    let key = el.name;
-    let value = el.value;
-    data[key] = value;
-  }
-  allBData.push(data);
-  localStorage.setItem(user + "_allBData", JSON.stringify(allBData));
-  swal("Good Job !", "Booking Success", "success");
+  regisrationFunc(bTextarea,allBInput,allBData, user+"_allBData");
   bookingForm.reset("");
-  bCloseBtn.click();
+  modalCBtn[0].click();
   ShowBookingData();
 };
+
+
+
+/// start inhouse booking coding
+inHouseForm.onsubmit = (e) => {
+    e.preventDefault();
+    regisrationFunc(InHTextarea,allInHInput,allInHData,user+"_allInHData");
+    inHouseForm.reset("");
+    modalCBtn[1].click();
+  };
 
 // booking deleet coding
 const deleteBDataFunc = () => {
@@ -138,45 +200,6 @@ const updateBDataFunc = () => {
     })
 }
 
-// show booking data
-const ShowBookingData = () => {
-  bListTBody.innerHTML = "";
-  allBData.forEach((item, index) => {
-    bListTBody.innerHTML += `
-        <tr>
-            <td class="text-nowrap">${index + 1}</td>
-            <td class="text-nowrap">${item.location}</td>
-            <td class="text-nowrap">${item.roomNo}</td>
-            <td class="text-nowrap">${item.fullname}</td>
-            <td class="text-nowrap">${formatDate(
-            item.checkInDate
-            )}</td>
-            <td class="text-nowrap">${formatDate(
-            item.checkOutDate,
-            true
-            )}</td>
-            <td class="text-nowrap">${item.totalPeople}</td>
-            <td class="text-nowrap">${item.mobile}</td>
-            <td class="text-nowrap">${item.price}</td>
-            <td class="text-nowrap">${item.notice}</td>
-            <td class="text-nowrap">${formatDate(
-            item.createdAt,
-            true
-            )}</td>
-            <td class="text-nowrap">
-            <button class="btn edit-btn p-1 px-2 btn-primary">
-                <i class="fa fa-edit"></i>
-            </button>
-            <button class="btn checkin-btn p-1 px-2 text-white btn-info">
-                <i class="fa fa-check"></i>
-            </button>
-            <button class="btn del-btn p-1 px-2 btn-danger">
-                <i class="fa fa-trash"></i>
-            </button>
-            </td>
-        </tr>`;
-  });
-  deleteBDataFunc();
-  updateBDataFunc();
-};
-ShowBookingData();
+
+ShowData(bListTBody,allBData);
+ShowData(InHListTBody,allInHData);
