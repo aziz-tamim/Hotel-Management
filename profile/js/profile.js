@@ -11,9 +11,9 @@ let bTextarea = bookingForm.querySelector("textarea");
 let inHouseForm = document.querySelector(".inhouse-form");
 let allInHInput = inHouseForm.querySelectorAll("input");
 let InHTextarea = inHouseForm.querySelector("textarea");
-let modalCBtn = document.querySelectorAll(".btn-close");
+let modalCBtn = document.querySelector(".btn-close");
 let bListTBody = document.querySelector(".booking-list");
-let InHListTBody = document.querySelector(".inhouse-list");
+let inHListTBody = document.querySelector(".inhouse-list");
 let bRegBtn = document.querySelector(".b-register-btn");
 /// Check user is login or not
 if (sessionStorage.getItem("__au__") == null) {
@@ -32,6 +32,7 @@ const fetchData = (key) => {
     return [];
   }
 };
+
 // format date function
 const formatDate = (data, isTime) => {
   const date = new Date(data);
@@ -46,23 +47,23 @@ const formatDate = (data, isTime) => {
 
 /// registration coding
 const regisrationFunc = (textarea,inputs,array,key) => {
-    let data = {
-        notice: textarea.value,
-        createdAt: new Date(),
-      };
-      for (let el of inputs) {
-        let key = el.name;
-        let value = el.value;
-        data[key] = value;
-      }
-      array.push(data);
-      localStorage.setItem(key, JSON.stringify(array));
-      swal("Good Job !", "Booking Success", "success");
+  let data = {
+    notice: textarea.value,
+    createdAt: new Date(),
+  };
+  for (let el of inputs) {
+    let key = el.name;
+    let value = el.value;
+    data[key] = value;
+  }
+  array.push(data);
+  localStorage.setItem(key, JSON.stringify(array));
+  swal("Good Job !", "Booking Success", "success");
 }
 
 // show data
 const ShowData = (element,array) => {
-    element.innerHTML = "";
+  element.innerHTML = "";
   array.forEach((item, index) => {
     element.innerHTML += `
         <tr>
@@ -117,21 +118,19 @@ logoutBtn.onclick = () => {
 /// start booking coding
 bookingForm.onsubmit = (e) => {
   e.preventDefault();
-  regisrationFunc(bTextarea,allBInput,allBData, user+"_allBData");
+  regisrationFunc(bTextarea,allBInput,allBData,user+"_allBData");
   bookingForm.reset("");
   modalCBtn[0].click();
   ShowBookingData();
 };
 
-
-
 /// start inhouse booking coding
 inHouseForm.onsubmit = (e) => {
-    e.preventDefault();
-    regisrationFunc(InHTextarea,allInHInput,allInHData,user+"_allInHData");
-    inHouseForm.reset("");
-    modalCBtn[1].click();
-  };
+  e.preventDefault();
+  regisrationFunc(InHTextarea,allInHInput,allInHData,user+"_allInHData");
+  inHouseForm.reset("");
+  modalCBtn[1].click();
+};
 
 // booking deleet coding
 const deleteBDataFunc = () => {
@@ -200,6 +199,5 @@ const updateBDataFunc = () => {
     })
 }
 
-
 ShowData(bListTBody,allBData);
-ShowData(InHListTBody,allInHData);
+ShowData(inHListTBody,allInHData);
